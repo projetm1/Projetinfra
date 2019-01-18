@@ -5,9 +5,9 @@
   tasks:
   - name: Clone the template
     vmware_guest:
-      hostname: "10.0.0.25"
-      username: "administrator@vsphere.local"
-      password: "Pa$$word73"
+      hostname: {{vcenter_ip}}
+      username: {{vcenter_username}}
+      password: {{vcenter_pass}}
       validate_certs: False
       name: testdeploiment
       template: "CoreOsmodele"
