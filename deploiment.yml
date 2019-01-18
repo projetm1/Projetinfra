@@ -1,0 +1,17 @@
+- name: Create a VM from a template
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: "10.0.0.25"
+      username: "administrator@vsphere.local"
+      password: "Pa$$word73"
+      validate_certs: False
+      name: testdeploiment
+      template: "CoreOsmodele"
+      datacenter: "projetM1"
+      folder: "Modeletest"
+      state: poweredon
+      wait_for_ip_address: yes
