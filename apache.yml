@@ -1,0 +1,51 @@
+# le nom de l'hôte ou groupe concerné
+- hosts: web
+ 
+  # on déclare les éventuelles variables
+  vars:
+    http_port: 80
+    domain: buzut.fr
+
+  # nom de l'utilisateur du compte (lance celui du .ssh/conf par défaut)
+#  remote_user: user
+
+  # ici débute la liste des tâches
+  tasks:
+
+  # nom d'une tâche
+  - name: ensure server is up to date
+    # nom du module à utiliser
+    apt:
+      update_cache: yes
+      upgrade: full
+
+  # installons apache
+  - name: install apache2
+    # il existe une syntaxe alternative, plus condensée
+    # apt: name=apache2 update_cache=yes state=latest
+
+    apt:
+      name: apache2
+      update_cache: yes
+      state: latest
+
+  # s'assurer que le mod rewrite est actif (l'activer sinon)
+  - name: enabled mod_rewrite
+    apache2_module:
+      name: rewrite
+      state: present
+
+  # le module template fonctionne de manière similaire à copy (vu plus haut)
+  # mais il injecte dynamiquement les variables nécessaires
+#  - name: write the apache config file
+#    template:
+#      src: /Users/Buzut/.ansible/templates/vhost.conf
+#      dest: /etc/apache2/sites-available/buzut.conf
+
+#  - name: enable vhost
+#    command: a2ensite buzut
+
+  - name: restart apache
+    service:
+      name: httpd
+      state: restarted
