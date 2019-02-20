@@ -4,7 +4,7 @@
   # on déclare les éventuelles variables
   vars:
     http_port: 80
-    domain: buzut.fr
+#    domain: buzut.fr
 
   # nom de l'utilisateur du compte (lance celui du .ssh/conf par défaut)
 #  remote_user: user
@@ -13,14 +13,14 @@
   tasks:
 
   # nom d'une tâche
-  - name: ensure server is up to date
+  - name: s'assurer que le serveur est à jour
     # nom du module à utiliser
     apt:
       update_cache: yes
       upgrade: full
 
   # installons apache
-  - name: install apache2
+  - name: installation de  apache2
     # il existe une syntaxe alternative, plus condensée
     # apt: name=apache2 update_cache=yes state=latest
 
