@@ -1,0 +1,14 @@
+- name: Remove virtual machine
+
+  hosts: localhost
+  tasks:
+   - name: "Supprimer la VM web"
+     vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        force : yes
+        name: "web"
+        state: absent
+     delegate_to: localhost

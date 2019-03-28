@@ -5,13 +5,19 @@
   tasks:
   - name: Clone the template
     vmware_guest:
-      hostname: {{vcenter_ip}}
-      username: {{vcenter_username}}
-      password: {{vcenter_pass}}
+      hostname: "{{vcenter_hostname}}"
+      username: "{{vcenter_username}}"
+      password: "{{vcenter_password}}"
       validate_certs: False
-      name: testdeploiment
-      template: "CoreOsmodele"
+      name: "web45"
+      template_src: "UC16"
       datacenter: "projetM1"
-      folder: "Modeletest"
+      folder: ""
       state: poweredon
-      wait_for_ip_address: yes
+#      networks:
+#       - name: VM Network
+#         ip : 10.0.0.67
+#         netmask : 255.255.255.0
+#         gateway : 10.0.0.1
+ #     wait_for_ip_address : no             
+      
